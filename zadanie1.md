@@ -24,7 +24,10 @@ Uruchamianie obrazu
 
 Wygląd strony
 ![image](https://github.com/Hiubertus/zad1/assets/138579706/ef943c31-f0a1-442e-908d-ccbb9b639e5f)
+![image](https://github.com/Hiubertus/zad1/assets/138579706/73e8c0b7-ff21-4665-b5c6-02e0d860bc62)
 
+Ilość stworzonych warstw:
+![image](https://github.com/Hiubertus/zad1/assets/138579706/079e42e7-8f11-4a4d-b86c-3b59cb251f00)
 
 *serwer.ts:
 
@@ -37,13 +40,18 @@ otrzymalibysmy inna godzine niż wchodząc tam z aktualnego adresu ip.
 
 3) app.use - pojawi się w razie problemu
 
-4) app.listen - Słucha na portcie, i wyświetla dane na konsoli
+4) app.listen - Słucha na portcie, i wyświetla dane na konsoli, przez co możemy widziec o której został stworzony plik, przez kogo i na jakim portcie sie znajduje.
 
 *Dockerfile
 
 1) Najpierw używamy obrazu scratch jako buildera, dodajemy do niego obraz oraz kopiujemy pliki.
 
-2) Następnie w Nginx, aktualizujemy wersje paczek oraz dodajemy paczki (więcej o tym w zadanie1_dod.md)
+2) Następnie w Nginx, aktualizujemy wersje paczek oraz dodajemy paczki, celem tego było usunięcie wszystkich vunerbilities, co początkowo się udało i ilość ich wynosiła 0. Dokonałem tego poprzed pobranie paczek z repozytorium alpine edge, które oferuje nowsze wersje paczek niż zwykła wersja 3.19 alpine. Dzięki temu naprawiłem wszystkie problemu, do czasu. Dnia 19.05 pojawiło się nowe vunerbility busybox@1.36.1-r15. Jak widać w pliku Dockerfile, próbowałem pobrać nowszą wersję tej paczki, i rzecz w tym, że to zachodziło, nie pokazywalo mi błędów (w sytuacji próby pobrania paczki której wersja nie jest dostępna byłby widoczny taki błąd). Jednak problemem jest to, że w momencie próby downgrade'u na niższą wersje, otrzymuje błąd, że alpine pobrał wersje busybox@1.36.1-r16 (tą co potrzebuje).
+![image](https://github.com/Hiubertus/zad1/assets/138579706/33f16d4c-36dc-4f58-b328-df543895084c)
+
+
+W tej wersji specialnie wpisałem złe polecenie. Jak widać, nie widzi wyższej wersji, ale poprawna wersja jest zainstalowana.Jednak w momencie zakończenia budowy gdy wszystko jest poprawnie, z jakiegoś powodu cofa się do wersji 1.36.1-r15, nie wiem czemu. Dlatego jest to jedno vunerbility.
+![image](https://github.com/Hiubertus/zad1/assets/138579706/e68e4037-af90-40d8-b4cf-47a94c2b6a9e)
 
 3) Następnie tworzymy folder app i przekopiowywujemy do niego zawartość obrazu builder, a także dodajemy konfiguracje Nginx
 
