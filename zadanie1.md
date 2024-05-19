@@ -47,7 +47,7 @@ otrzymalibysmy inna godzine niż wchodząc tam z aktualnego adresu ip.
 1) Najpierw używamy obrazu scratch jako buildera, dodajemy do niego obraz oraz kopiujemy pliki.
 
 2) Następnie w Nginx, aktualizujemy wersje paczek oraz dodajemy paczki, celem tego było usunięcie wszystkich vunerbilities, co początkowo się udało i ilość ich wynosiła 0. Dokonałem tego poprzed pobranie paczek z repozytorium alpine edge, które oferuje nowsze wersje paczek niż zwykła wersja 3.19 alpine. Dzięki temu naprawiłem wszystkie problemu, do czasu. Dnia 19.05 pojawiło się nowe vunerbility busybox@1.36.1-r15. Jak widać w pliku Dockerfile, próbowałem pobrać nowszą wersję tej paczki, i rzecz w tym, że to zachodziło, nie pokazywalo mi błędów (w sytuacji próby pobrania paczki której wersja nie jest dostępna byłby widoczny taki błąd). Jednak problemem jest to, że w momencie próby downgrade'u na niższą wersje, otrzymuje błąd, że alpine pobrał wersje busybox@1.36.1-r16 (tą co potrzebuje).
-![image](https://github.com/Hiubertus/zad1/assets/138579706/33f16d4c-36dc-4f58-b328-df543895084c)
+![image](https://github.com/Hiubertus/zad1/assets/138579706/c82a343e-8ea1-45c5-9a59-fd8fc4922f92)
 
 
 W tej wersji specialnie wpisałem złe polecenie. Jak widać, nie widzi wyższej wersji, ale poprawna wersja jest zainstalowana.Jednak w momencie zakończenia budowy gdy wszystko jest poprawnie, z jakiegoś powodu cofa się do wersji 1.36.1-r15, nie wiem czemu. Dlatego jest to jedno vunerbility.
